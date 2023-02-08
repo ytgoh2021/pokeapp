@@ -1,16 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HeaderBar/>
+  <div class="container">
+  <hr>
+  <router-view></router-view>
+  </div>
+  
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+/* eslint-disable */
+import PokemonCard from './components/PokemonCard.vue'
+import HeaderBar from './components/HeaderBar.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    PokemonCard,
+    HeaderBar,
+  },
 }
 </script>
 
