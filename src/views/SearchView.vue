@@ -32,7 +32,7 @@ export default {/* eslint-disable */
             myweight: '',
             myabilities: '',
             tempabilities: [],
-            mydescription: '',
+            mydescription: 'Not available',
             id: '',
             searchterm: '',
             invalid: false,
@@ -45,30 +45,34 @@ export default {/* eslint-disable */
         let response;
         try {
             response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pokename)
+            const data = await response.json()
+            this.invalid = false
+            return data 
         }
         catch (error) {
             this.invalid = true
-            return -1
+            
+            
         }
-        if (response.status === 404){
-            this.invalid = true
-            return -1
-        }
-        const data = await response.json()
-        this.invalid = false
-        return data 
     },
       async fetchDesc(id){
         const res = await fetch("https://pokeapi.co/api/v2/pokemon-species/"+id)
         const data = await res.json()
-        const desc = await data.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text
-        return desc
+        try {
+          const desc = await data.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text
+          return desc
+        }
+        catch{
+          return 'Not available'
+        }
       },
       async SearchPoke(searchname){
+
         this.pokedata = {}
         this.pokedata = await this.fetchPoke(searchname)
+        this.searchterm = '';
         if (this.pokedata === -1){
-            console.log('Not found')
+            
         }
         else{
             this.picurl = await this.pokedata.sprites.front_default
@@ -84,10 +88,8 @@ export default {/* eslint-disable */
             this.result = true
         }
         
-      },
-      search(){
         
-      }
+      },
     },
 }
 </script>

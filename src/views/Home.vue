@@ -39,8 +39,13 @@ export default {/* eslint-disable */
       async fetchDesc(id){
         const res = await fetch("https://pokeapi.co/api/v2/pokemon-species/"+id)
         const data = await res.json()
-        const desc = await data.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text
-        return desc
+        try {
+          const desc = await data.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text
+          return desc
+        }
+        catch{
+          return ''
+        }
       },
       random(){
         const id = Math.floor(Math.random() * 807) + 1
