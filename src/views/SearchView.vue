@@ -4,7 +4,7 @@
     <h5 class="text-danger" v-if="invalid">The pokemon cannot be found. Please ensure you have the correct spelling</h5>
     <div class="row g-3 justify-content-center">
         <div class="col-auto">
-            <input @keyup.enter="SearchPoke(searchterm)" type="text" v-model="searchterm" class="form-control" id="searchbar" placeholder="Pokemon Name">
+            <input @keyup.enter="SearchPoke(searchterm)" type="text" v-model="searchterm" class="form-control" id="searchbar" placeholder="Pokemon Name or ID">
         </div>
         <div class="col-auto">
             <button @keyup.enter="SearchPoke(searchterm)" @click="SearchPoke(searchterm)" class="btn btn-primary mb-3">Search</button>
@@ -47,12 +47,10 @@ export default {/* eslint-disable */
             response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pokename)
             const data = await response.json()
             this.invalid = false
-            return data 
+            return data
         }
         catch (error) {
             this.invalid = true
-            
-            
         }
     },
       async fetchDesc(id){
