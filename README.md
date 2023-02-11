@@ -9,7 +9,7 @@ Randomly generates a Pokemon from all available Pokemon in the main series games
 Displays the Pokemon's name, type, abilities, and stats
 
 ## Technologies
-This web application is built using the Vue3 framework and uses the PokeAPI. The CSS framework used is Bootstrap 5.
+This web application is built using the Vue3 framework and uses the PokeAPI. The CSS framework used is Bootstrap 5. Jest was used for testing.
 
 ## Design Considerations
 For the header, a bootstrap 5 header template was used. To display the Pokemon data, a bootstrap 5 card template was used. This design choice ensures some level of responsiveness for the web application.
